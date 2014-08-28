@@ -1,18 +1,16 @@
+volcano-sdk-php
+===============
 
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+Python SDK for VolcanoCRM
 
+## Purpose
+The attempt here is to make a simple to use Python SDK for @volcano.
+From the same people (person) who brought you the PHP SDK!
 
-Hi there! Welcome to Cloud9 IDE!
+## Example
 
-To get you started, create some files, play with the terminal,
-or visit http://docs.c9.io for our documentation.
-If you want, you can also go watch some training videos at
-http://www.youtube.com/user/c9ide.
+```python
 
-Happy coding!
-The Cloud9 IDE team
+# Example coming soon.
+
+```
