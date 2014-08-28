@@ -1,4 +1,4 @@
-volcano-sdk-php
+volcano-sdk-python
 ===============
 
 Python SDK for VolcanoCRM
