@@ -1,23 +1,53 @@
-import service.Router as Router
+import volcanosdk.service.Router as Router
+import urllib2, json
 
 class Service:
     def __init__(self, service):
+        """
+        Constructor, figures out routes.
+        """
         self._service = service
-        
         self.getRoutes()
-        pass
     
     def getRoutes(self):
-        self._routes = Router.find(self._service)
+        router = Router()
+        self._routes = router.find(self._service)
         
         if not self._routes:
             raise Exception("No routes for service {0}".format(self._service))
     
-    def call(self, method, *args):
+    def __getattr__(self, attr):
+        """
+        Pass undefined calls along to the call method
+        """
+        def method(*args, **kwargs):
+            self.call(attr, *args)
+    
+    def call(self, route, *args):
         """
         Does the actual api call.
         """
-        pass
+        
+        if not self._routes[route]:
+            raise Exception("No route defined for {}".format(route))
+        
+        data = None
+        
+        if isinstance(args[len(args)-1], list):
+            data = args[len(args)-1]
+            
+        
+        url = self._baseUrl + self._routes[route]['path'].format((None) + args)
+        
+        req = urllib2.Request(url, data)
+        req.get_method = lambda: self._routes[route]['method']
+        
+        resp = urllib2.urlopen(req)
+        
+        if not self._returnRaw:
+            return json.loads(resp.read())
+        
+        return resp.read()
     
     def apiKey(self, key = None):
         """
