@@ -1,4 +1,4 @@
-import json
+import json, os
 
 class Router:
     def __init__(self):
@@ -16,7 +16,8 @@ class Router:
         
     
     def loadServiceData(self):
-        file = open('../config/routes.json', 'r')
+        curpath = os.path.dirname(os.path.realpath(__file__))
+        file = open(curpath + '/../config/routes.json', 'r')
         
         contents = file.read()
         self.routes = json.loads(contents)

@@ -1,4 +1,4 @@
-import volcanosdk.service.Router as Router
+from volcanosdk.service.Router import Router
 import urllib2, json
 
 class Service:
@@ -7,6 +7,7 @@ class Service:
         Constructor, figures out routes.
         """
         self._service = service
+        self._returnRaw = False
         self.getRoutes()
     
     def getRoutes(self):
@@ -21,7 +22,9 @@ class Service:
         Pass undefined calls along to the call method
         """
         def method(*args, **kwargs):
-            self.call(attr, *args)
+            return self.call(attr, *args)
+        
+        return method
     
     def call(self, route, *args):
         """
@@ -35,9 +38,9 @@ class Service:
         
         if isinstance(args[len(args)-1], list):
             data = args[len(args)-1]
-            
         
-        url = self._baseUrl + self._routes[route]['path'].format((None) + args)
+        # Offset starts at 1.
+        url = self._baseUrl + "/" + self._routes[route]['path'].format(None, *args)
         
         req = urllib2.Request(url, data)
         req.get_method = lambda: self._routes[route]['method']
