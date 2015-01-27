@@ -40,7 +40,7 @@ class Service:
             data = args[len(args)-1]
         
         # Offset starts at 1.
-        url = self._baseUrl + "/" + self._routes[route]['path'].format(None, *args)
+        url = self._baseUrl + "/api/" + self._routes[route]['path'].format(None, *args)
         
         req = urllib2.Request(url, data)
         req.get_method = lambda: self._routes[route]['method']
