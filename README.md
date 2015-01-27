@@ -10,7 +10,12 @@ From the same people (person) who brought you the PHP SDK!
 ## Example
 
 ```python
+from volcanosdk.service.Service import Service
 
-# Example coming soon.
+seller = Service('Seller');
+seller.baseUrl('https://volcano')
 
+print seller.get(1)['name']
+print seller.listContacts(1)
+print seller.getContact(1, 1)
 ```
